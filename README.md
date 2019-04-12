@@ -1,5 +1,5 @@
 # SVG Pie and Donut
-A small plugin to generate an SVG Pie or Donut chart.
+A small jQuery plugin to generate an SVG Pie or Donut chart.
 
 Parameters for the pie/donut chart
 
