@@ -148,15 +148,16 @@
 		}
 
 		var pieSliceExplode = function(slice){
-			//var $pie_slice = $("#" + slice.id);
 			var $pie_slice = $("[id|='" + slice.id + "']");
 			var $pie_slice_label = $("#" + slice.id.replace("_slice_", "_label_"));
 			removeIndicator();
 			
 			if(!that.settings.explodeAll){
 				for(counter in slices){
-					if(slice.id != slices[counter].id)
-						$("#" + slices[counter].id).attr("transform", "translate(0, 0)").attr("pie-exploded", "0");
+					if(slice.id != slices[counter].id) {
+						$("[id|='" + slices[counter].id + "']").css({"transform": "translate(0px, 0px)"}).attr("pie-exploded", "0");
+						$("[id|='" + slices[counter].id.replace("_slice_", "_label_") + "']").css({"transform": "translate(0px, 0px)"}).attr("pie-exploded", "0");
+					}
 				}
 			}
 
@@ -166,17 +167,13 @@
 				normal = getPoints(that.pie_center, explode_angle, that.pie_radius);
 
 				var delta = {x: explode.x - normal.x, y: explode.y - normal.y};
-				//$pie_slice.attr("transform", "translate(" + delta.x + ", " + delta.y + ")").attr("pie-exploded", "1");
 				$pie_slice.css({"transform": "translate(" + delta.x + "px, " + delta.y + "px)"}).attr("pie-exploded", "1");
 				if(that.settings.isLabelInside){
-					//$pie_slice_label.attr("transform", "translate(" + delta.x + ", " + delta.y + ")");
 					$pie_slice_label.css({"transform": "translate(" + delta.x + "px, " + delta.y + "px)"});
 				}
 			}else{
-				//$pie_slice.attr("transform", "translate(0, 0)").attr("pie-exploded", "0");
 				$pie_slice.css({"transform": "translate(0px, 0px)"}).attr("pie-exploded", "0");
 				if(that.settings.isLabelInside){
-					//$pie_slice_label.attr("transform", "translate(0, 0)");
 					$pie_slice_label.css({"transform": "translate(0px, 0px)"});
 				}
 				if(that.settings.showIndicator)
@@ -212,7 +209,6 @@
 				}
 			}else{
 				if($("#" + slice.id).attr("pie-exploded") == "0"){
-					//var indicatorRadius = that.pie_radius + 6;
 					var start = getPoints(that.pie_center, slice.start_angle, indicatorRadius);
 					var end = getPoints(that.pie_center, slice.end_angle, indicatorRadius);
 					var large_slice = (((slice.end_angle - slice.start_angle) / Math.PI) > 1) ? 1 : 0;
@@ -226,7 +222,6 @@
 					slicePath.attr("opacity", 0.30);
 					slicePath.attr("fill", slice.color);
 
-					//that.svgContext.append(slicePath);
 					pieGroup[0].appendChild(slicePath[0]);
 				}
 			}
@@ -367,9 +362,6 @@
 					labelContent = "";
 				tspan[0].textContent = labelContent;
 				pieGroup[0].appendChild(label[0]);
-				//that.svgContext.append(label);
-
-				//var box = label[0].getBBox();
 			}
 		}
 
@@ -404,14 +396,12 @@
 				rect.attr('cursor', "pointer");
 				rect.attr("fill", slices[counter].color);
 				rect.attr("stroke", modifyColor(slices[counter].color, -40));
-				//rect.setAttribute("stroke-width", 2);
 				g[0].appendChild(rect[0]);
 
 				tspan = $(document.createElementNS(that.svgNS, "tspan"));
 				tspan.attr('id', that.settings.id + "_text_" + counter);
 				tspan.attr('x', that.settings.width + 30);
 				tspan.attr('y', counter * dy + 60);
-				//labelColor = slices[counter].color;
 				if(that.settings.legendColor == "invert")
 					legendColor = invertCSSColor(slices[counter].color);
 				else if(that.settings.legendColor == "normal")
@@ -467,18 +457,8 @@
 			donut_radius = that.pie_radius * that.settings.donutHoleSize
 			donut_start = getPoints(that.pie_center, slice.start_angle, donut_radius);
 			donut_end = getPoints(that.pie_center, slice.end_angle, donut_radius);
-/*
-			if($("#" + slice.id + "_slicegroup").length == 0){
-				sliceGroup = $(document.createElementNS(that.svgNS, "g"));
-				sliceGroup.attr("id", slice.id + "_slicegroup");
-				pieGroup[0].appendChild(sliceGroup[0]);
-			}else{
-				sliceGroup = $("#" + slice.id + "_slicegroup");
-			}
-*/
+
 			if(type == "I"){
-				//var start_angle = (slice.start_angle < Math.PI ? Math.PI : slice.start_angle);
-				//var end_angle = (slice.end_angle < Math.PI ? Math.PI : slice.end_angle);
 				var start_angle = slice.start_angle;
 				var end_angle = slice.end_angle;
 
@@ -494,7 +474,6 @@
 				}
 				slicePath.attr("stroke", borderColor);
 				slicePath.attr("stroke-width", 2);
-				//slicePath.attr("stroke-opacity", 0.5);
 				slicePath.attr("opacity", 1);
 				slicePath.attr("fill", modifyColor(slice.color, -40));
 				slicePath.attr("pie-exploded", "0");
@@ -526,7 +505,6 @@
 				}
 				slicePath.attr("stroke", borderColor);
 				slicePath.attr("stroke-width", 2);
-				//slicePath.attr("stroke-opacity", 0.5);
 				slicePath.attr("opacity", 1);
 				slicePath.attr("fill", slice.color);
 				slicePath.attr("pie-exploded", "0");
@@ -539,8 +517,6 @@
 			}
 
 			if(type == "O"){
-				//var start_angle = (slice.start_angle > Math.PI ? Math.PI : slice.start_angle);
-				//var end_angle = (slice.end_angle > Math.PI ? Math.PI : slice.end_angle);
 				var start_angle = slice.start_angle;
 				var end_angle = slice.end_angle;
 		
@@ -556,7 +532,6 @@
 				}
 				slicePath.attr("stroke", borderColor);
 				slicePath.attr("stroke-width", 2);
-				//slicePath.attr("stroke-opacity", 0.5);
 				slicePath.attr("opacity", 1);
 				slicePath.attr("fill", modifyColor(slice.color, -40));
 				slicePath.attr("pie-exploded", "0");
@@ -569,8 +544,6 @@
 			}
 
 			if(type == "R"){
-				//var start_angle = (slice.start_angle > Math.PI ? Math.PI : slice.start_angle);
-				//var end_angle = (slice.end_angle > Math.PI ? Math.PI : slice.end_angle);
 				var start_angle = slice.start_angle;
 				var end_angle = slice.end_angle;
 		
@@ -586,7 +559,6 @@
 				}
 				slicePath.attr("stroke", borderColor);
 				slicePath.attr("stroke-width", 2);
-				//slicePath.attr("stroke-opacity", 0.5);
 				slicePath.attr("opacity", 1);
 				slicePath.attr("fill", modifyColor(slice.color, -40));
 				slicePath.attr("pie-exploded", "0");
@@ -599,8 +571,6 @@
 			}
 
 			if(type == "L"){
-				//var start_angle = (slice.start_angle > Math.PI ? Math.PI : slice.start_angle);
-				//var end_angle = (slice.end_angle > Math.PI ? Math.PI : slice.end_angle);
 				var start_angle = slice.start_angle;
 				var end_angle = slice.end_angle;
 		
@@ -616,7 +586,6 @@
 				}
 				slicePath.attr("stroke", borderColor);
 				slicePath.attr("stroke-width", 2);
-				//slicePath.attr("stroke-opacity", 0.5);
 				slicePath.attr("opacity", 1);
 				slicePath.attr("fill", modifyColor(slice.color, -40));
 				slicePath.attr("pie-exploded", "0");
@@ -670,7 +639,6 @@
 			}
 			slicePath.attr("stroke", borderColor);
 			slicePath.attr("stroke-width", 2);
-			//slicePath.attr("stroke-opacity", 0.5);
 			slicePath.attr("opacity", 1);
 			slicePath.attr("fill", slice.color);
 			slicePath.attr("pie-exploded", "0");
@@ -680,7 +648,6 @@
 			slicePath.mouseleave(function(e){handleMouseMove(e);});
 			slicePath.click(function(e){handleMouseMove(e);});
 
-			//that.svgContext.append(slicePath);
 			pieGroup[0].appendChild(slicePath[0]);
 		}
 
@@ -725,20 +692,19 @@
 		}
 
 		var handleMouseMove = function(e){
-			//var X = e.target.id.split("_");
 			var X = e.target.id.split("-")[0].split("_");
 			var slice_index = X[X.length-1];
 			mouseX = parseInt(e.clientX - that.offsetX);
 			mouseY = parseInt(e.clientY - that.offsetY);
 
 			if(e.type == "mouseenter"){
-				//pieSliceExplode(slices[slice_index]);
+				// pieSliceExplode(slices[slice_index]);
 				if(that.settings.showIndicator)
 					showIndicator(slices[slice_index]);
 				else
 					highlightSlice(slices[slice_index]);
 			}else if(e.type == "mouseleave"){
-				//pieSliceExplode(slices[slice_index]);
+				// pieSliceExplode(slices[slice_index]);
 				if(that.settings.showIndicator)
 					removeIndicator();
 				else
@@ -795,7 +761,8 @@
 				start_angle += slice_angle;
 				color_index++;
 			}
-			console.log(slices)
+
+			// Draw the pie
 			drawPie();
 
 			if(that.settings.showLabel != ""){

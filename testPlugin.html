@@ -10,7 +10,7 @@
 			// options for chart. all options are optional.
 			var optCircle = {
 				type: "donut", // pie for pie chart and donut for donut chart. default is pie.
-				is3D: false, // true for 3D chart, false for 2D chart. default is false.
+				is3D: true, // true for 3D chart, false for 2D chart. default is false.
 				id: "canvasCircle", // id of chart element. default is "canvas_" + Date.now()
 				title: "", // title for the chart. default is empty.
 				titleColor: "black", // color of the title.
@@ -50,9 +50,6 @@
 
 			// call chart function passing the options.
 			$("#testCanvas").circle(optCircle);
-			
-			// rgba(234, 182, 73, 1) -> Orange
-			// rgba(50,170,183, 1.0) -> Blue
 		})
 	</script>
 </head>
