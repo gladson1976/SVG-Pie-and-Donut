@@ -3,12 +3,12 @@ A small jQuery plugin to generate an SVG Pie or Donut chart.
 
 <table>
   <tr>
-    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/pie2d.png'></td>
-    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/donut2d.png'></td>
-  </tr>
-  <tr>
     <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/pie3d.png'></td>
     <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/donut3d.png'></td>
+  </tr>
+  <tr>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/pie2d.png'></td>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/donut2d.png'></td>
   </tr>
 </table>
 
