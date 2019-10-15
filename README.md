@@ -1,6 +1,17 @@
 # SVG Pie and Donut
 A small jQuery plugin to generate an SVG Pie or Donut chart.
 
+<table>
+  <tr>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/pie2d.png'></td>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/donut2d.png'></td>
+  </tr>
+  <tr>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/pie3d.png'></td>
+    <td><img src='https://github.com/gladson1976/SVG-Pie-and-Donut/blob/master/donut3d.png'></td>
+  </tr>
+</table>
+
 Parameters for the pie/donut chart
 
 <b><i>type</i></b> - The type of the chart to generate. This is a String value. Valid values are <i><b>pie</b></i> and <i><b>donut</b></i>, default is <i><b>pie</b></i>.<br>
